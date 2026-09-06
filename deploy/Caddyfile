@@ -1,0 +1,7 @@
+respawnwipe.de {
+	reverse_proxy beneficial-belt:4321
+}
+
+rpo-estimation-tool.com {
+	reverse_proxy estimation-tool:80
+}
