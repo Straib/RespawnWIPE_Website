@@ -1,0 +1,20 @@
+services:
+  beneficial-belt:
+    build: .
+    container_name: beneficial-belt
+    restart: unless-stopped
+    environment:
+      HOST: 0.0.0.0
+      PORT: 4321
+    networks:
+      - proxy
+    # Only needed if nothing else on the VPS already publishes this port.
+    # Remove once the reverse proxy is wired up via the shared network below.
+    # ports:
+    #   - "4321:4321"
+
+networks:
+  proxy:
+    external: true
+    # Must match the network name your existing reverse proxy container is attached to.
+    name: proxy

@@ -2,8 +2,6 @@
 import { Icon } from "astro-icon/components";
 import { squadService } from "../../services/wls_server_stats.service";
 
-export const prerender = false; // Wichtig für Live-SSR
-
 const server = await squadService.getServerStatus();
 const rules = [
 	{ title: 'WLS 01. PFLICHT & MIKROFON', description: 'Ein funktionierendes Mikrofon ist für Squad Lead & Command Pflicht.' },
