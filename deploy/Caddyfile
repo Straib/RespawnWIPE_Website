@@ -1,4 +1,4 @@
-respawnwipe.de {
+respawnwipe.de www.respawnwipe.de {
 	reverse_proxy beneficial-belt:4321
 }
 
@@ -6,3 +6,5 @@ respawnwipe.de {
 api.rpo-estimation-tool.com {
 	reverse_proxy estimation-tool-server:8080
 }
+
+pscp.exe deploy\docker-compose.yml deploy\Caddyfile root@87.106.168.192:/opt/infra/deploy/
