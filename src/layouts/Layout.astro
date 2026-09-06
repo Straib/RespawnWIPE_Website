@@ -10,17 +10,17 @@ const { title = "Respawn [WIPE] Squad Hub" } = Astro.props;
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<!-- Open Graph tags -->
-		<meta property="og:title" content="{title}" />
+		<meta property="og:title" content={title} />
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://Respawn-WIPE.com" />
+		<meta property="og:url" content="https://respawnwipe.de" />
 		<meta
 			property="og:description"
-			content="Welcome to {title}!"
+			content={`Welcome to ${title}!`}
 		/>
-		<!-- <meta
+		<meta
 			property="og:image"
-			content="https://www.example.com/_astro/seo-banner.BZD7kegZ.webp"
-		/> -->
+			content="https://respawnwipe.de/Favicon.Respawn_WIPE.png"
+		/>
 		<meta property="og:image:alt" content="WIPE" />
 
 		<link

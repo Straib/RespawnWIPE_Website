@@ -7,7 +7,7 @@ import node from '@astrojs/node';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://Respawn-WIPE.com',
+  site: 'https://respawnwipe.de',
   base: '/',
   trailingSlash: 'always',
   output: 'server',
