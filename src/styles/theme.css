@@ -1,0 +1,74 @@
+/* Tactical Phoenix UI design tokens — shared across all Respawn [WIPE] components */
+:root {
+	--surface: #0e131d;
+	--surface-dim: #0b1019;
+	--surface-container-lowest: #090e18;
+	--surface-container-low: #171c26;
+	--surface-container: #1b202a;
+	--surface-container-high: #252a35;
+	--surface-container-highest: #303540;
+	--surface-bright: #343944;
+	--on-surface: #dee2f1;
+	--on-surface-variant: #d5c4b2;
+	--outline: #9d8e7e;
+	--outline-variant: #3a3428;
+	--primary: #ffc67b;
+	--primary-container: #e5a958;
+	--on-primary-container: #633e00;
+	--secondary-container: #3b2a1a;
+	--on-secondary-container: #1e1408;
+	--secondary: #eebf73;
+	--tertiary: #96d8ff;
+	--tertiary-container: #3dc0fb;
+	--error: #ff8a80;
+	--gold-dim: #835505;
+
+	--font-display: 'Barlow Condensed', sans-serif;
+	--font-body: 'Inter', sans-serif;
+	--font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	background: var(--surface);
+	color: var(--on-surface);
+	font-family: var(--font-body);
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button {
+	font-family: var(--font-mono);
+	cursor: pointer;
+}
+
+.eyebrow {
+	font: 500 10px var(--font-mono);
+	letter-spacing: 0.12em;
+	color: var(--primary-container);
+	text-transform: uppercase;
+}
+
+.gold-text {
+	color: var(--primary) !important;
+}
+
+.wrap {
+	width: min(100%, 1280px);
+	margin: 0 auto;
+	padding: 0 40px;
+}
+
+@media (max-width: 640px) {
+	.wrap {
+		padding: 0 18px;
+	}
+}

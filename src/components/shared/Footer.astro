@@ -1,0 +1,159 @@
+---
+import { squadService } from "../../services/wls_server_stats.service";
+
+const navLinks = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Guides', href: '/guides/' },
+	{ label: 'Roster & Rekrutierung', href: '/recruitment/' },
+	{ label: 'Server & Events', href: '/server/' },
+];
+const unitLinks = ['Command & Squad Leaders', 'Mechanized & Heavy Armor', 'Armored Logistics & CAS', 'Specialized Infantry'];
+
+
+export const prerender = false; // Wichtig für Live-SSR
+
+const server = await squadService.getServerStatus();
+---
+
+<footer class="site-footer">
+	<div class="wrap footer-grid">
+		<div class="footer-brand">
+			<div class="brand"><span class="brand-mark">W</span><strong>RESPAWN [WIPE]</strong></div>
+			<p>
+				Taktische deutsch Community rund um We Love Squad (WLS). Squad-Gefechte,
+				Community-Abende und Trainings dachten und breitraditioniertes WLS-Partnernetzwerk.
+			</p>
+			<a class="footer-link" href="https://discord.gg/H86PmQbc8z" target="_blank" rel="noreferrer">OFFIZIELLE DISCORD ↗</a>
+		</div>
+		<div>
+			<span class="footer-heading">Taktische Navigation</span>
+			<ul>
+				{navLinks.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+			</ul>
+		</div>
+		<div>
+			<span class="footer-heading">Einheiten & Comms</span>
+			<ul>
+				{unitLinks.map((label) => <li><a href="/recruitment">{label}</a></li>)}
+			</ul>
+		</div>
+		<div class="footer-telemetry">
+			<span class="footer-heading">WLS Server Telemetrie</span>
+			<div class="telemetry-row"><span>Aktiv</span><strong>{server.players} / {server.maxPlayers}</strong></div>
+			<div class="telemetry-row"><span>Status</span><strong class="gold-text">{server.isOnline ? "Online" : "Offline"}</strong></div>
+		</div>
+	</div>
+	<div class="wrap footer-bottom">
+		<span>© 2026 Respawn [WIPE] Squad. Alle Rechte vorbehalten.</span>
+		<span class="tagline">TACTICS • COMMUNICATION • TEAMPLAY</span>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		border-top: 1px solid var(--outline-variant);
+		background: var(--surface-container-lowest);
+		margin-top: 40px;
+	}
+	.footer-grid {
+		display: grid;
+		grid-template-columns: 1.6fr 1fr 1fr 1fr;
+		gap: 32px;
+		padding: 48px 40px;
+	}
+	.footer-brand .brand {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		margin-bottom: 14px;
+	}
+	.brand-mark {
+		display: grid;
+		place-items: center;
+		width: 26px;
+		height: 26px;
+		border: 1px solid var(--primary-container);
+		color: var(--primary);
+		font: 800 17px var(--font-display);
+		transform: skew(-8deg);
+	}
+	.footer-brand strong {
+		font: 700 15px var(--font-display);
+		letter-spacing: 0.06em;
+	}
+	.footer-brand p {
+		font-size: 11px;
+		line-height: 1.7;
+		color: var(--outline);
+		margin: 0 0 14px;
+	}
+	.footer-link {
+		font: 600 9px var(--font-mono);
+		color: var(--primary);
+		letter-spacing: 0.06em;
+	}
+	.footer-heading {
+		display: block;
+		font: 600 10px var(--font-mono);
+		letter-spacing: 0.1em;
+		color: var(--on-surface);
+		margin-bottom: 16px;
+	}
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	ul a {
+		font-size: 11px;
+		color: var(--outline);
+	}
+	ul a:hover {
+		color: var(--primary);
+	}
+	.telemetry-row {
+		display: flex;
+		justify-content: space-between;
+		font-size: 10px;
+		color: var(--outline);
+		padding: 8px 0;
+		border-bottom: 1px solid var(--outline-variant);
+	}
+	.telemetry-row strong {
+		color: var(--on-surface);
+		font-weight: 600;
+	}
+	.footer-bottom {
+		border-top: 1px solid var(--outline-variant);
+		padding: 18px 40px;
+		display: flex;
+		justify-content: space-between;
+		font: 9px var(--font-mono);
+		color: var(--outline-variant);
+		letter-spacing: 0.05em;
+	}
+	.tagline {
+		color: var(--primary-container);
+	}
+
+	@media (max-width: 900px) {
+		.footer-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	@media (max-width: 640px) {
+		.footer-grid {
+			grid-template-columns: 1fr;
+			padding: 32px 18px;
+			gap: 26px;
+		}
+		.footer-bottom {
+			flex-direction: column;
+			gap: 8px;
+			padding: 16px 18px;
+		}
+	}
+</style>

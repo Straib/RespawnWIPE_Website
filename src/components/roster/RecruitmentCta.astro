@@ -1,0 +1,69 @@
+---
+import CtaBanner from '../shared/CtaBanner.astro';
+
+const steps = [
+	{ title: 'DISCORD BEITRETEN', description: 'Trete unserem Server bei und stelle dich im Willkommens-Kanal vor.' },
+	{ title: 'KURZES KENNENLERNEN', description: 'Ein kurzes Gespräch mit einem Recruitment Officer klärt offene Fragen.' },
+	{ title: 'INS GEFECHT ZIEHEN', description: 'Nach der Aufnahme geht es direkt mit dem Squad in den nächsten Einsatz.' },
+];
+---
+
+<CtaBanner
+	eyebrow="REKRUTIERUNG"
+	title="TRITT UNSEREM <em>DISCORD</em> BEI"
+	description="Bewirb dich unkompliziert über unseren Discord-Server und werde Teil von Respawn [WIPE]."
+	buttonText="DISCORD SERVER BEITRETEN"
+	buttonHref="https://discord.com"
+>
+	<div class="steps">
+		{
+			steps.map((step, index) => (
+				<div class="step">
+					<span>{`0${index + 1}`}</span>
+					<div>
+						<strong>{step.title}</strong>
+						<p>{step.description}</p>
+					</div>
+				</div>
+			))
+		}
+	</div>
+</CtaBanner>
+
+<style>
+	.steps {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+		margin-top: 26px;
+		padding-top: 22px;
+		border-top: 1px solid var(--outline-variant);
+	}
+	.step {
+		display: flex;
+		gap: 12px;
+	}
+	.step span {
+		font: 700 14px var(--font-mono);
+		color: var(--primary-container);
+		flex: none;
+	}
+	.step strong {
+		display: block;
+		font: 600 13px var(--font-display);
+		letter-spacing: 0.03em;
+		margin-bottom: 5px;
+	}
+	.step p {
+		font-size: 12px;
+		line-height: 1.6;
+		color: var(--outline);
+		margin: 0;
+	}
+
+	@media (max-width: 640px) {
+		.steps {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

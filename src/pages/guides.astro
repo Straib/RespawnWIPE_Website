@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/shared/Header.astro';
+import Footer from '../components/shared/Footer.astro';
+import GuidesHeader from '../components/guides/GuidesHeader.astro';
+import GuideGrid from '../components/guides/GuideGrid.astro';
+import TelemetryTable from '../components/guides/TelemetryTable.astro';
+import CtaBanner from '../components/shared/CtaBanner.astro';
+---
+
+<Layout title="Guides | Respawn [WIPE]">
+	<Header active="guides" />
+	<GuidesHeader />
+	<GuideGrid />
+	<TelemetryTable />
+	<CtaBanner
+		eyebrow="MITMACHEN"
+		title="DU MÖCHTEST EINEN <em>GUIDE</em> EINREICHEN ODER MIT VETERANEN TRAINIEREN?"
+		description="Teile dein Wissen mit der Community oder vereinbare ein persönliches Training mit erfahrenen Squad-Mitgliedern."
+		buttonText="SUPPORT KONTAKTIEREN"
+		buttonHref="https://discord.gg/H86PmQbc8z"
+	/>
+	<Footer />
+</Layout>

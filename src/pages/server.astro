@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/shared/Header.astro';
+import Footer from '../components/shared/Footer.astro';
+import ServerMonitorHeader from '../components/server/ServerMonitorHeader.astro';
+import ServerList from '../components/server/ServerList.astro';
+import OpsCalendar from '../components/server/OpsCalendar.astro';
+---
+
+<Layout title="Server & Events | Respawn [WIPE]">
+	<Header active="server" />
+	<ServerMonitorHeader />
+	<ServerList />
+	<OpsCalendar />
+	<Footer />
+</Layout>

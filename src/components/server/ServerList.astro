@@ -1,0 +1,277 @@
+---
+import { Icon } from "astro-icon/components";
+import { squadService } from "../../services/wls_server_stats.service";
+
+export const prerender = false; // Wichtig für Live-SSR
+
+const server = await squadService.getServerStatus();
+const rules = [
+	{ title: 'WLS 01. PFLICHT & MIKROFON', description: 'Ein funktionierendes Mikrofon ist für Squad Lead & Command Pflicht.' },
+	{ title: 'FRIENDLY FIRE & TK-HANDLING', description: 'Teamkills werden konsequent geahndet und protokolliert.' },
+	{ title: 'MAIN-CAMPING & MINEN-SPERRE', description: 'Main-Camping und Minen im Spawnbereich sind strikt untersagt.' },
+	{ title: 'WLS VEHICLE-CLAIM POLICY', description: 'Fahrzeuge werden über den Squad Lead claimed und koordiniert.' },
+];
+---
+
+<section class="server-list">
+	<div class="wrap">
+		<div class="section-head">
+			<span class="eyebrow">01 // AKTIVE PARTNERSERVER</span>
+			<h2>WLS EINSATZ-CLUSTER // <em>HEIMAT VON [WIPE]</em></h2>
+			<p>
+				Alle Gefechte von Respawn [WIPE] laufen exklusiv auf den
+				dedizierten We Love Squad Serverclustern — live überwacht und
+				jederzeit einsatzbereit.
+			</p>
+		</div>
+		<div class="section-grid">
+			<div class="server-cards">
+				<article class:list={['server-card', server.isOnline ? 'accent-primary' : 'accent-offline']}>
+					<div class="server-card-top">
+						<div class="server-tags">
+							<span class:list={['status-pill', { 'status-offline': !server.isOnline }]}>
+								<i /> {server.isOnline ? 'ONLINE' : 'OFFLINE'}
+							</span>
+							<span class="type-badge">WLS PARTNER CLAN</span>
+							<span class="ping-tag">PING: {server.ping}ms</span>
+						</div>
+						<h3>{server.name}</h3>
+					</div>
+					<div class="server-stats-grid">
+						<div class="server-stat">
+							<span>AKTUELLE MAP</span>
+							<strong>{server.map}</strong>
+						</div>
+						<div class="server-stat">
+							<span>SPIELER</span>
+							<strong>{server.players} / {server.maxPlayers}</strong>
+						</div>
+						<div class="server-stat">
+							<span>PING</span>
+							<strong>{server.ping}ms</strong>
+						</div>
+						<div class="server-stat">
+							<span>FRAKTIONEN</span>
+							<strong>{server.rawSquadDetails?.teamOne ?? '—'} vs {server.rawSquadDetails?.teamTwo ?? '—'}</strong>
+						</div>
+					</div>
+					<a class="join-button" href="steam://rungameid/393380//+connect 178.63.27.87:7787">
+						BEITRETEN <Icon name="bi:arrow-up-right" size={12} />
+					</a>
+				</article>
+			</div>
+			<aside class="rules-panel">
+				<div class="panel-title">
+					<Icon name="bi:shield-check" size={16} />
+					WLS SERVER-REGELN
+				</div>
+				<ol>
+					{
+						rules.map((rule, index) => (
+							<li>
+								<span class="rule-index">{`0${index + 1}`}</span>
+								<div>
+									<strong>{rule.title}</strong>
+									<p>{rule.description}</p>
+								</div>
+							</li>
+						))
+					}
+				</ol>
+			</aside>
+		</div>
+	</div>
+</section>
+
+<style>
+	.server-list {
+		padding: 64px 0;
+	}
+	.section-head {
+		margin-bottom: 28px;
+	}
+	.section-head h2 {
+		font: 700 clamp(28px, 3.2vw, 34px) / 1.15 var(--font-display);
+		letter-spacing: 0.03em;
+		margin: 12px 0 12px;
+	}
+	.section-head h2 em {
+		color: var(--primary);
+		font-style: normal;
+	}
+	.section-head p {
+		color: var(--outline);
+		font-size: 16px;
+		line-height: 1.7;
+		max-width: 620px;
+		margin: 0;
+	}
+	.section-grid {
+		display: grid;
+		grid-template-columns: 1.6fr 1fr;
+		gap: 20px;
+	}
+	.server-cards {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+	.server-card {
+		background: var(--surface-container-low);
+		border-left: 3px solid var(--outline-variant);
+		padding: 22px 24px;
+		transition: background 0.2s ease;
+	}
+	.server-card:hover {
+		background: var(--surface-container);
+	}
+	.server-card.accent-primary {
+		border-left-color: var(--primary);
+	}
+	.server-card.accent-offline {
+		border-left-color: var(--outline-variant);
+	}
+	.server-tags {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		flex-wrap: wrap;
+		margin-bottom: 12px;
+	}
+	.status-pill {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		background: var(--surface-container-high);
+		color: var(--primary);
+		font: 700 10px var(--font-mono);
+		letter-spacing: 0.05em;
+		padding: 4px 8px;
+	}
+	.status-pill i {
+		width: 5px;
+		height: 5px;
+		border-radius: 50%;
+		background: var(--primary-container);
+	}
+	.status-pill.status-offline {
+		color: var(--outline);
+	}
+	.status-pill.status-offline i {
+		background: var(--outline-variant);
+	}
+	.type-badge {
+		background: rgba(255, 198, 123, 0.12);
+		color: var(--primary);
+		font: 700 10px var(--font-mono);
+		letter-spacing: 0.06em;
+		padding: 4px 8px;
+	}
+	.ping-tag {
+		color: var(--outline);
+		font: 10px var(--font-mono);
+	}
+	.server-card h3 {
+		font: 600 18px var(--font-display);
+		letter-spacing: 0.02em;
+		margin: 0 0 16px;
+	}
+	.server-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 10px;
+		margin-bottom: 18px;
+	}
+	.server-stat {
+		background: var(--surface-container-lowest);
+		padding: 10px 12px;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+	.server-stat span {
+		font: 700 9px var(--font-mono);
+		letter-spacing: 0.05em;
+		color: var(--outline);
+	}
+	.server-stat strong {
+		font: 700 13px var(--font-mono);
+		color: var(--on-surface);
+	}
+	.join-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 6px;
+		background: var(--primary-container);
+		color: var(--surface-container-lowest);
+		border: 0;
+		font: 700 11px var(--font-mono);
+		letter-spacing: 0.06em;
+		padding: 12px 18px;
+		width: fit-content;
+	}
+	.join-button:hover {
+		background: var(--primary);
+	}
+	.rules-panel {
+		background: var(--surface-container-low);
+		border: 1px solid var(--outline-variant);
+		align-self: start;
+	}
+	.panel-title {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 18px 22px;
+		border-bottom: 1px solid var(--outline-variant);
+		font: 600 11px var(--font-mono);
+		letter-spacing: 0.08em;
+		color: var(--primary);
+	}
+	.rules-panel ol {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.rules-panel li {
+		display: flex;
+		gap: 12px;
+		padding: 18px 22px;
+		border-bottom: 1px solid var(--outline-variant);
+	}
+	.rules-panel li:last-child {
+		border-bottom: 0;
+	}
+	.rule-index {
+		font: 10px var(--font-mono);
+		color: var(--primary-container);
+		flex: none;
+	}
+	.rules-panel strong {
+		display: block;
+		font: 600 13px var(--font-display);
+		letter-spacing: 0.02em;
+		margin-bottom: 5px;
+	}
+	.rules-panel p {
+		font-size: 12px;
+		line-height: 1.6;
+		color: var(--outline);
+		margin: 0;
+	}
+
+	@media (max-width: 900px) {
+		.section-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+	@media (max-width: 640px) {
+		.server-list {
+			padding: 44px 0;
+		}
+		.server-stats-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+</style>

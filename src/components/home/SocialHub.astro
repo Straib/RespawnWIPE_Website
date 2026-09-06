@@ -1,0 +1,126 @@
+---
+const cards = [
+	{
+		tag: 'DISCORD',
+		title: '[WIPE] DISCORD',
+		description: 'Der zentrale Anlaufpunkt für Squad-Planung, Rekrutierung und Community-Talk.',
+		meta: '312 ONLINE',
+		action: 'BEITRETEN',
+	},
+	{
+		tag: 'LIVESTREAM',
+		title: '[WIPE] TACTICAL SQUAD LEADER CAM',
+		description: 'Wöchentliche Live-Übertragung mit Squadleiter-Kommentar direkt aus dem Gefecht.',
+		meta: 'STREAM SCHEDULE',
+		action: 'ANSEHEN',
+	},
+	{
+		tag: 'MEDIA',
+		title: 'RESPAWN MEDIA DISPATCH',
+		description: 'Highlight-Clips, Operation-Recaps und Community-Beiträge aus dem Archiv.',
+		meta: 'WÖCHENTLICH',
+		action: 'ARCHIV ÖFFNEN',
+	},
+];
+---
+
+<section class="social-hub">
+	<div class="wrap">
+		<div class="section-head">
+			<span class="eyebrow">03 // COMMUNITY</span>
+			<h2>SOCIAL HUB & LIVESTREAMS</h2>
+		</div>
+		<div class="card-grid">
+			{
+				cards.map((card) => (
+					<article class="social-card">
+						<span class="card-tag">{card.tag}</span>
+						<h3>{card.title}</h3>
+						<p>{card.description}</p>
+						<div class="card-foot">
+							<span>{card.meta}</span>
+							<button>{card.action}</button>
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.social-hub {
+		padding: 20px 0 64px;
+	}
+	.section-head {
+		margin-bottom: 24px;
+	}
+	.section-head h2 {
+		font: 700 28px var(--font-display);
+		letter-spacing: 0.03em;
+		margin: 8px 0 0;
+	}
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 14px;
+	}
+	.social-card {
+		background: var(--surface-container-low);
+		border: 1px solid var(--outline-variant);
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+	}
+	.card-tag {
+		font: 700 9px var(--font-mono);
+		letter-spacing: 0.1em;
+		color: var(--primary);
+	}
+	.social-card h3 {
+		font: 600 17px var(--font-display);
+		letter-spacing: 0.02em;
+		margin: 10px 0 8px;
+	}
+	.social-card p {
+		font-size: 11px;
+		line-height: 1.6;
+		color: var(--outline);
+		margin: 0 0 18px;
+		flex: 1;
+	}
+	.card-foot {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		border-top: 1px solid var(--outline-variant);
+		padding-top: 14px;
+	}
+	.card-foot span {
+		font: 9px var(--font-mono);
+		color: var(--outline);
+	}
+	.card-foot button {
+		background: none;
+		border: 1px solid var(--primary-container);
+		color: var(--primary);
+		font: 600 9px var(--font-mono);
+		letter-spacing: 0.05em;
+		padding: 8px 12px;
+	}
+	.card-foot button:hover {
+		background: var(--primary-container);
+		color: var(--surface-container-lowest);
+	}
+
+	@media (max-width: 900px) {
+		.card-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	@media (max-width: 640px) {
+		.card-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

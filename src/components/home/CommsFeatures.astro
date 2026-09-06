@@ -1,0 +1,186 @@
+---
+import { Icon } from "astro-icon/components";
+const features = [
+	{
+		icon: "bi:box",
+		title: "STRATEGISCHE KOMMUNIKATION",
+		description:
+			"Klare Funkdisziplin und Callouts entscheiden über Sieg oder Niederlage im Gefecht.",
+	},
+	{
+		icon: "bi:grid",
+		title: "ARMOR & MECH DOKTRIN",
+		description:
+			"Koordinierte gepanzerte Vorstöße mit erfahrenen Fahrern und Schützen.",
+	},
+];
+const stats = [
+	{ value: "29+", label: "AKTIVE MITGLIEDER", description: "Alles Verückte" },
+	{ value: "1", label: "TURNIERSIEGE", description: "DCN Turniere" },
+	{ value: "WLS", label: "PARTNERCLAN", description: "Whitelist enjoyer" },
+	{ value: "DAILY", label: "SQUAD-ABENDE", description: "Ab 19:00 Uhr CEST" },
+];
+---
+
+<section class="comms">
+	<div class="wrap comms-inner">
+		<div class="comms-copy">
+			<span class="eyebrow">[WIPE] DOKTRIN</span>
+			<h2>KOMMUNIKATION KANN <em>TÖDLICH SEIN.</em></h2>
+			<p>
+				Gegründet im Jahr 2026 von passionierten MilSim- und
+				Taktik-Veteranen, steht <span class="WIPE-highlight"
+					>Respawn [WIPE]</span
+				> für kompromisslose Schlachtfeldkoordination. Als stolzer und
+				offizieller <span class="WLS-highlight"
+					>WLS (We Love Squad) Partnerclan</span
+				> konzentrieren wir unsere gesamte Truppenstärke exklusiv auf diesen
+				Server, für koordinierte Panzervorstöße, lückenlose FOB-Netzwerke
+				und verlässliche Community-Power.
+			</p>
+			<div class="feature-grid">
+				{
+					features.map((feature) => (
+						<article class="feature-card">
+							<div style="display: flex; align-items: center;">
+								<Icon
+									name={feature.icon}
+									style="margin-right: 6px;"
+									size={16}
+								/>
+								<strong>{feature.title}</strong>
+							</div>
+							<p>{feature.description}</p>
+						</article>
+					))
+				}
+			</div>
+		</div>
+		<aside class="stats-panel">
+			{
+				stats.map((stat) => (
+					<div class="stat">
+						<strong>{stat.value}</strong>
+						<span>{stat.label}</span>
+						<span class="stat-description">{stat.description}</span>
+					</div>
+				))
+			}
+		</aside>
+	</div>
+</section>
+
+<style>
+	.comms {
+		padding: 64px 0;
+		border-top: 1px solid var(--outline-variant);
+	}
+	.comms-inner {
+		display: grid;
+		grid-template-columns: 1.6fr 1fr;
+		gap: 32px;
+		align-items: start;
+	}
+	.comms-copy h2 {
+		font: 700 clamp(60px, 3.4vw, 34px) / 1.15 var(--font-display);
+		letter-spacing: 0.03em;
+		margin: 12px 0 16px;
+	}
+	.comms-copy h2 em {
+		color: var(--primary);
+		font-style: normal;
+	}
+	.comms-copy > p {
+		color: var(--outline);
+		font-size: 16px;
+		line-height: 1.7;
+		max-width: 560px;
+		margin: 0 0 26px;
+	}
+	.feature-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+	}
+	.feature-card {
+		display: flex;
+		flex-direction: column;
+	
+		background: var(--surface-container-low);
+		border-top: 2px solid var(--primary-container);
+		padding: 18px;
+	}
+	.feature-icon {
+		color: var(--primary);
+		font-size: 16px;
+	}
+	.feature-card strong {
+		display: block;
+		font: 600 18px var(--font-display);
+		letter-spacing: 0.03em;
+		margin: 12px 0 6px;
+		padding-bottom: 6px;
+	}
+	.feature-card p {
+		font-size: 16px;
+		line-height: 1.6;
+		color: var(--outline);
+		margin: 0;
+	}
+	.stats-panel {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+		background: var(--transparent);
+		align-content: start;
+	}
+	.stat {
+		background: var(--surface-container);
+		padding: 16px;
+		min-height: 200px;
+		min-width: 200px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+	}
+	.stat strong {
+		display: block;
+		font: 800 70px var(--font-display);
+		color: var(--primary);
+	}
+	.stat span {
+		display: block;
+		font: 18px var(--font-mono);
+		letter-spacing: 0.08em;
+		margin-top: 6px;
+	}
+	.stat-description {
+		display: block !important;
+		font-size: 12px !important;
+		color: var(--outline) !important;
+		margin-top: 4px !important;
+	}
+	.WIPE-highlight {
+		color: var(--tertiary);
+		font-weight: 700;
+	}
+	.WLS-highlight {
+		color: var(--primary);
+		font-weight: 700;
+	}
+
+	@media (max-width: 900px) {
+		.comms-inner {
+			grid-template-columns: 1fr;
+		}
+	}
+	@media (max-width: 640px) {
+		.feature-grid {
+			grid-template-columns: 1fr;
+		}
+		.comms {
+			padding: 44px 0;
+		}
+	}
+</style>

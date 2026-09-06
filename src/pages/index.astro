@@ -1,11 +1,24 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Header from '../components/shared/Header.astro';
+import Footer from '../components/shared/Footer.astro';
+import Hero from '../components/home/Hero.astro';
+import CommsFeatures from '../components/home/CommsFeatures.astro';
+import SocialHub from '../components/home/SocialHub.astro';
+import CtaBanner from '../components/shared/CtaBanner.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Respawn [WIPE] Squad Hub">
+	<Header active="home" />
+	<Hero />
+	<CommsFeatures />
+	<!-- <SocialHub /> -->
+	<CtaBanner
+		eyebrow="BEREIT?"
+		title="BEREIT FÜR DAS <em>ECHTE SQUAD</em> ERLEBNIS?"
+		description="Tritt unserem Discord bei und werde Teil der nächsten Operation von Respawn [WIPE]."
+		buttonText="JOIN OUR DISCORD"
+		buttonHref="https://discord.gg/H86PmQbc8z"
+	/>
+	<Footer />
 </Layout>

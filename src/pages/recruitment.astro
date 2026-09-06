@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/shared/Header.astro';
+import Footer from '../components/shared/Footer.astro';
+import RosterHero from '../components/roster/RosterHero.astro';
+import DepartmentGrid from '../components/roster/DepartmentGrid.astro';
+import RosterTable from '../components/roster/RosterTable.astro';
+import RequirementsBenefits from '../components/roster/RequirementsBenefits.astro';
+import RecruitmentCta from '../components/roster/RecruitmentCta.astro';
+---
+
+<Layout title="Roster & Rekrutierung | Respawn [WIPE]">
+	<Header active="recruitment" />
+	<RosterHero />
+	<DepartmentGrid />
+	<RosterTable />
+	<RequirementsBenefits />
+	<RecruitmentCta />
+	<Footer />
+</Layout>

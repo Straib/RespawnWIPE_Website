@@ -1,0 +1,115 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+    text: string;
+    href?: string;
+    action?: string;
+    style?: string;
+    icon?: string;
+    size?: string;
+    target?: string;
+    rel?: string;
+}
+
+const { text, href, action, style = "primary", icon, size, target, rel } = Astro.props;
+function getIconSize() {
+    switch (size) {
+        case "sm":
+            return 14;
+        case "md":
+            return 16;
+        case "lg":
+            return 36;
+        default:
+            return 16;
+    }
+}
+
+function isIconButton() {
+    if(icon) {
+        return `${size}-icon`;
+    }
+    return size;
+}
+---
+
+{
+    href ? (
+        <a class={style} href={href} target={target} rel={rel}>
+            {icon && <Icon name={icon} style="margin-right: 6px;" size={getIconSize()} />}
+            <span class={isIconButton()}>{text}</span>
+        </a>
+    ) : (
+        <button class={style} type="button" onclick={action}>
+            {icon && <Icon name={icon} style="margin-right: 6px;" size={getIconSize()} />}
+            <span class={isIconButton()}>{text}</span>
+        </button>
+    )
+}
+
+<style>
+    .primary {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--primary-container);
+        color: var(--surface-container-lowest);
+        font: 700 var(--font-mono);
+        letter-spacing: 0.06em;
+        padding: 14px 22px;
+    }
+    .primary:hover {
+        background: var(--primary);
+    }
+
+    .secondary {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font: 700 var(--font-mono);
+        letter-spacing: 0.06em;
+        border-left: 1px solid var(--outline-variant);
+        padding: 14px 22px;
+        background: var(--surface-container);
+    }
+    .secondary:hover {
+        color: var(--primary);
+        border-color: var(--secondary-container);
+    }
+    .secondary span {
+        margin-left: 4px;
+    }
+
+    .md {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+
+    .sm {
+        font-size: 14px;
+        padding: 4px 8px;
+    }
+
+    .lg {
+        font-size: 20px;
+        padding: 12px 16px;
+    }
+
+    .md-icon {
+        font-size: 16px;
+        padding: 8px 6px;
+    }
+
+    .sm-icon {
+        font-size: 14px;
+        padding: 4px 6px;
+    }
+
+    .lg-icon {
+        font-size: 20px;
+        padding: 12px 6px;
+    }
+
+
+</style>

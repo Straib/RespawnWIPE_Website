@@ -1,0 +1,148 @@
+---
+import { Icon } from "astro-icon/components";
+
+const departments = [
+	{ div: 'DIV-01', icon: 'bi:award-fill', title: 'COMMAND & SQUAD LEADERS', description: 'Führt Squads, koordiniert das Gefecht und trifft taktische Entscheidungen.', count: '6 OFFIZIERE', role: 'FÜHRUNGSSTAB' },
+	{ div: 'DIV-02', icon: 'bi:shield-fill', title: 'MECHANIZED & HEAVY ARMOR', description: 'Bedient gepanzerte Fahrzeuge und koordiniert Panzervorstöße.', count: '11 BESATZUNG', role: 'PANZERGRENADIERE' },
+	{ div: 'DIV-03', icon: 'bi:truck', title: 'ARMORED LOGISTICS & CAS', description: 'Versorgungslinien, Logistikfahrzeuge und Luftnahunterstützung.', count: '8 FAHRER', role: 'LOGISTIKWING' },
+	{ div: 'DIV-04', icon: 'bi:crosshair', title: 'SPECIALIZED INFANTRY', description: 'Marksmen, Sanitäter und Aufklärung für flexible Einsätze.', count: '14 OPERATOREN', role: 'STOSS-INFANTERIE' },
+];
+---
+
+<section class="department-section">
+	<div class="wrap">
+		<div class="section-head">
+			<span class="eyebrow">01 // STRUKTUR & FACHBEREICHE</span>
+			<h2>ABTEILUNGEN & <em>SPEZIALISIERUNGEN</em></h2>
+			<p>
+				Jede Abteilung übernimmt eine feste Rolle im Gefecht — von der
+				Führung bis zur Aufklärung. So bleibt Respawn [WIPE] auf jeder
+				Karte schlagkräftig.
+			</p>
+		</div>
+		<div class="department-grid">
+			{
+				departments.map((dept) => (
+					<article class="department-card">
+						<div class="department-top">
+							<span class="department-icon">
+								<Icon name={dept.icon} size={20} />
+							</span>
+							<span class="department-div">{dept.div}</span>
+						</div>
+						<strong>{dept.title}</strong>
+						<p>{dept.description}</p>
+						<div class="department-footer">
+							<span class="department-count">{dept.count}</span>
+							<span class="department-role">{dept.role}</span>
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.department-section {
+		padding: 64px 0;
+		border-top: 1px solid var(--outline-variant);
+	}
+	.section-head {
+		margin-bottom: 28px;
+	}
+	.section-head h2 {
+		font: 700 clamp(28px, 3.2vw, 34px) / 1.15 var(--font-display);
+		letter-spacing: 0.03em;
+		margin: 12px 0 12px;
+	}
+	.section-head h2 em {
+		color: var(--primary);
+		font-style: normal;
+	}
+	.section-head p {
+		color: var(--outline);
+		font-size: 16px;
+		line-height: 1.7;
+		max-width: 620px;
+		margin: 0;
+	}
+	.department-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 12px;
+	}
+	.department-card {
+		background: var(--surface-container-low);
+		border-top: 2px solid var(--primary-container);
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		transition: background 0.2s ease;
+	}
+	.department-card:hover {
+		background: var(--surface-container);
+	}
+	.department-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 14px;
+	}
+	.department-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 34px;
+		height: 34px;
+		background: var(--surface-container-high);
+		color: var(--primary);
+	}
+	.department-div {
+		color: var(--primary-container);
+		font: 700 12px var(--font-mono);
+	}
+	.department-card strong {
+		font: 600 18px var(--font-display);
+		letter-spacing: 0.03em;
+		margin: 0 0 8px;
+	}
+	.department-card p {
+		font-size: 16px;
+		line-height: 1.6;
+		color: var(--outline);
+		margin: 0 0 14px;
+		flex: 1;
+	}
+	.department-footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-top: 14px;
+		border-top: 1px solid var(--outline-variant);
+	}
+	.department-count {
+		font: 10px var(--font-mono);
+		color: var(--primary);
+		letter-spacing: 0.04em;
+	}
+	.department-role {
+		font: 10px var(--font-mono);
+		color: var(--outline);
+		letter-spacing: 0.04em;
+	}
+
+	@media (max-width: 900px) {
+		.department-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	@media (max-width: 640px) {
+		.department-grid {
+			grid-template-columns: 1fr;
+		}
+		.department-section {
+			padding: 44px 0;
+		}
+	}
+</style>

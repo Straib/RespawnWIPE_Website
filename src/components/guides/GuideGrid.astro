@@ -1,0 +1,47 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<section class="guide-grid-section">
+	<div class="wrap">
+		<div class="wip-panel">
+			<Icon name="bi:cone-striped" size={28} />
+			<span class="eyebrow">IN ENTWICKLUNG</span>
+			<h3>Guides folgen in Kürze</h3>
+			<p>
+				Das Field Manual mit taktischen Guides zu Infanterie, Armor,
+				Logistik und Squad Leading wird gerade aufgebaut. Schau bald
+				wieder vorbei oder frag im Discord nach Tipps.
+			</p>
+		</div>
+	</div>
+</section>
+
+<style>
+	.guide-grid-section {
+		padding: 8px 0 64px;
+	}
+	.wip-panel {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+		background: var(--surface-container-low);
+		border: 1px dashed var(--outline-variant);
+		color: var(--primary);
+		padding: 48px 32px;
+	}
+	.wip-panel h3 {
+		font: 700 22px var(--font-display);
+		letter-spacing: 0.02em;
+		color: var(--on-surface);
+		margin: 4px 0 0;
+	}
+	.wip-panel p {
+		font-size: 14px;
+		line-height: 1.6;
+		color: var(--outline);
+		max-width: 480px;
+		margin: 0;
+	}
+</style>

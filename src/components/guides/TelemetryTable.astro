@@ -1,0 +1,128 @@
+---
+const rows = [
+	{ objective: 'FOB / Funkgerät verloren', cost: '-20 Tickets', respawn: 'Neuaufbau erforderlich', status: 'KRITISCH' },
+	{ objective: 'Fahrzeugverlust (Motorrad bis Heavy Armor)', cost: '-1 bis -30+ Tickets', respawn: 'Abhängig von Fraktion & Patch', status: 'HOCH' },
+	{ objective: 'Kommandant gefallen', cost: '-2 Tickets', respawn: 'Sofortiger Respawn', status: 'MITTEL' },
+	{ objective: 'Infanterist gefallen (Bleedout/Suizid/Aufgabe)', cost: '-1 Ticket', respawn: 'Sofortiger Respawn', status: 'NIEDRIG' },
+];
+---
+
+<section class="telemetry">
+	<div class="wrap">
+		<div class="section-head">
+			<span class="eyebrow">GEFECHTSDATEN</span>
+			<h2>GEFECHTSFELD-TELEMETRIE & <em>TICKET-KOSTEN</em></h2>
+			<p>
+				Die wichtigsten Ticket-Verluste und Respawn-Zeiten auf einen
+				Blick — für fundierte taktische Entscheidungen im Gefecht.
+			</p>
+		</div>
+		<div class="telemetry-table">
+			<div class="telemetry-row telemetry-head">
+				<span>OBJEKTIV / AKTION</span>
+				<span>TICKET-KOSTEN</span>
+				<span>RESPAWN-ZEIT</span>
+				<span>PRIORITÄT</span>
+			</div>
+			{
+				rows.map((row) => (
+					<div class="telemetry-row">
+						<span class="objective">{row.objective}</span>
+						<span>{row.cost}</span>
+						<span>{row.respawn}</span>
+						<span class:list={['status-pill', row.status.toLowerCase()]}>{row.status}</span>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.telemetry {
+		padding: 64px 0;
+		border-top: 1px solid var(--outline-variant);
+	}
+	.section-head {
+		margin-bottom: 28px;
+	}
+	.section-head h2 {
+		font: 700 clamp(28px, 3.2vw, 34px) / 1.15 var(--font-display);
+		letter-spacing: 0.03em;
+		margin: 12px 0 12px;
+	}
+	.section-head h2 em {
+		color: var(--primary);
+		font-style: normal;
+	}
+	.section-head p {
+		color: var(--outline);
+		font-size: 16px;
+		line-height: 1.7;
+		max-width: 620px;
+		margin: 0;
+	}
+	.telemetry-table {
+		background: var(--surface-container-low);
+		border: 1px solid var(--outline-variant);
+	}
+	.telemetry-row {
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr 1fr;
+		gap: 12px;
+		padding: 16px 24px;
+		border-bottom: 1px solid var(--outline-variant);
+		align-items: center;
+		font: 13px var(--font-mono);
+		color: var(--outline);
+	}
+	.telemetry-row:last-child {
+		border-bottom: 0;
+	}
+	.telemetry-head {
+		font: 600 10px var(--font-mono);
+		letter-spacing: 0.08em;
+		color: var(--on-surface);
+	}
+	.objective {
+		color: var(--on-surface);
+	}
+	.status-pill {
+		width: fit-content;
+		font: 700 9px var(--font-mono);
+		letter-spacing: 0.05em;
+		padding: 5px 9px;
+	}
+	.status-pill.kritisch {
+		color: var(--error);
+		background: rgba(255, 138, 128, 0.12);
+	}
+	.status-pill.hoch {
+		color: var(--primary);
+		background: rgba(255, 198, 123, 0.12);
+	}
+	.status-pill.mittel {
+		color: var(--tertiary);
+		background: rgba(150, 216, 255, 0.12);
+	}
+	.status-pill.niedrig {
+		color: var(--outline);
+		background: var(--surface-container-high);
+	}
+
+	@media (max-width: 640px) {
+		.telemetry {
+			padding: 44px 0;
+		}
+		.telemetry-row {
+			grid-template-columns: 1fr 1fr;
+			row-gap: 6px;
+		}
+		.objective {
+			grid-column: 1 / -1;
+		}
+		.telemetry-head {
+			display: none;
+		}
+	}
+</style>

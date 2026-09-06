@@ -1,0 +1,80 @@
+---
+import WipeButton from './WipeButton.astro';
+
+interface Props {
+	eyebrow: string;
+	title: string;
+	description: string;
+	buttonText: string;
+	buttonHref: string;
+}
+const { eyebrow, title, description, buttonText, buttonHref } = Astro.props as Props;
+---
+
+<section class="cta-banner">
+	<div class="wrap cta-inner">
+		<div class="cta-copy">
+			<span class="eyebrow">{eyebrow}</span>
+			<h2 set:html={title} />
+			<p>{description}</p>
+		</div>
+		<WipeButton href={buttonHref} text={buttonText} rel="noreferrer" target="_blank"></WipeButton>
+	</div>
+	<div class="wrap">
+		<slot />
+	</div>
+</section>
+
+<style>
+	.cta-banner {
+		background: var(--surface-container-low);
+		border-left: 3px solid var(--primary-container);
+		padding: 30px 0;
+	}
+	.cta-inner {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 24px;
+	}
+	.cta-copy h2 {
+		font: 700 clamp(22px, 3vw, 30px) var(--font-display);
+		letter-spacing: 0.03em;
+		margin: 8px 0 6px;
+	}
+	.cta-copy h2 :global(em) {
+		color: var(--primary);
+		font-style: normal;
+	}
+	.cta-copy p {
+		font-size: 12px;
+		color: var(--outline);
+		margin: 0;
+		max-width: 560px;
+	}
+	.cta-button {
+		flex: none;
+		background: var(--primary-container);
+		color: var(--surface-container-lowest);
+		font: 700 11px var(--font-mono);
+		letter-spacing: 0.06em;
+		padding: 14px 20px;
+	}
+	.cta-button:hover {
+		background: var(--primary);
+	}
+	.cta-button span {
+		margin-left: 6px;
+	}
+
+	@media (max-width: 640px) {
+		.cta-inner {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		.cta-button {
+			width: 100%;
+			text-align: center;
+		}
+	}
+</style>

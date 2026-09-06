@@ -1,0 +1,180 @@
+---
+import { Icon } from "astro-icon/components";
+
+const expectations = [
+	'MINDESTALTER 16+ JAHRE',
+	'KLARES MIKROFON & FUNKDISZIPLIN',
+	'TEAMPLAY VOR PERSÖNLICHER K/D',
+	'ZUVERLÄSSIGKEIT BEI CLAN-EVENTS',
+];
+const benefits = [
+	{ icon: 'bi:shield-check', title: 'WLS WHITELIST', description: 'Bevorzugter Zugang zu allen Partnerservern.' },
+	{ icon: 'bi:lightning-charge-fill', title: 'TAKTIK-TRAININGS', description: 'Regelmäßige Bootcamps für jede Rolle.' },
+	{ icon: 'bi:trophy-fill', title: 'EVENTS & TURNIERE', description: 'Community-Abende und Clan-War-Teilnahme.' },
+	{ icon: 'bi:people-fill', title: 'FREUNDLICHE COMMUNITY', description: 'Ein Team, das zusammenhält — auf und abseits des Feldes.' },
+];
+---
+
+<section class="requirements-section">
+	<div class="wrap">
+		<div class="section-head">
+			<span class="eyebrow">03 // ANFORDERUNGEN</span>
+			<h2>ERWARTUNGEN & <em>BENEFITS</em></h2>
+			<p>
+				Wir suchen Kameraden, die Verlässlichkeit und Teamplay
+				mitbringen — und bieten im Gegenzug eine Community, die
+				zusammenhält.
+			</p>
+		</div>
+		<div class="two-column">
+			<article class="panel">
+				<div class="panel-title">
+					<Icon name="bi:hammer" size={16} />
+					WAS WIR VON DIR ERWARTEN
+				</div>
+				<ul class="checklist">
+					{expectations.map((item) => <li><span>✓</span>{item}</li>)}
+				</ul>
+				<div class="panel-footnote">
+					<Icon name="bi:exclamation-triangle-fill" size={18} />
+					<p>Keine Vorstrafen wegen Cheating, Trolling oder toxischem Verhalten in Squad-Netzwerken.</p>
+				</div>
+			</article>
+			<article class="panel">
+				<div class="panel-title">
+					<Icon name="bi:award-fill" size={16} />
+					WAS WIR DIR BIETEN
+				</div>
+				<div class="benefit-grid">
+					{
+						benefits.map((benefit) => (
+							<div class="benefit">
+								<span class="benefit-icon">
+									<Icon name={benefit.icon} size={16} />
+								</span>
+								<strong>{benefit.title}</strong>
+								<p>{benefit.description}</p>
+							</div>
+						))
+					}
+				</div>
+			</article>
+		</div>
+	</div>
+</section>
+
+<style>
+	.requirements-section {
+		padding: 64px 0;
+		border-top: 1px solid var(--outline-variant);
+	}
+	.section-head {
+		margin-bottom: 28px;
+	}
+	.section-head h2 {
+		font: 700 clamp(28px, 3.2vw, 34px) / 1.15 var(--font-display);
+		letter-spacing: 0.03em;
+		margin: 12px 0 12px;
+	}
+	.section-head h2 em {
+		color: var(--primary);
+		font-style: normal;
+	}
+	.section-head p {
+		color: var(--outline);
+		font-size: 16px;
+		line-height: 1.7;
+		max-width: 620px;
+		margin: 0;
+	}
+	.two-column {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+	}
+	.panel {
+		background: var(--surface-container-low);
+		border: 1px solid var(--outline-variant);
+		display: flex;
+		flex-direction: column;
+	}
+	.panel-title {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 18px 22px;
+		border-bottom: 1px solid var(--outline-variant);
+		font: 600 11px var(--font-mono);
+		letter-spacing: 0.08em;
+		color: var(--primary);
+	}
+	.checklist {
+		list-style: none;
+		margin: 0;
+		padding: 20px 22px;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+	.checklist li {
+		display: flex;
+		gap: 10px;
+		font: 13px var(--font-mono);
+		color: var(--outline);
+		letter-spacing: 0.03em;
+	}
+	.checklist span {
+		color: var(--primary);
+	}
+	.panel-footnote {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		margin: 0 22px 22px;
+		padding: 16px;
+		background: var(--surface-container);
+		color: var(--outline);
+	}
+	.panel-footnote p {
+		font: 10px var(--font-mono);
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		margin: 0;
+	}
+	.benefit-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1px;
+		background: var(--outline-variant);
+	}
+	.benefit {
+		background: var(--surface-container-low);
+		padding: 20px;
+	}
+	.benefit-icon {
+		color: var(--primary);
+	}
+	.benefit strong {
+		display: block;
+		font: 600 14px var(--font-display);
+		letter-spacing: 0.03em;
+		margin: 10px 0 6px;
+	}
+	.benefit p {
+		font-size: 13px;
+		line-height: 1.5;
+		color: var(--outline);
+		margin: 0;
+	}
+
+	@media (max-width: 900px) {
+		.two-column {
+			grid-template-columns: 1fr;
+		}
+	}
+	@media (max-width: 640px) {
+		.requirements-section {
+			padding: 44px 0;
+		}
+	}
+</style>

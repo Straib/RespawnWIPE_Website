@@ -1,0 +1,167 @@
+---
+import { squadService } from "../../services/wls_server_stats.service";
+
+export const prerender = false; // Wichtig für Live-SSR
+
+const server = await squadService.getServerStatus();
+---
+
+<section class="server-header">
+	<div class="wrap telemetry-strip">
+		<span class="telemetry-status">
+			<i class="pulse-dot"></i> [WLS] WE LOVE SQUAD CLUSTER // DE-01
+			<span class="partner-badge">OFFIZIELLER PARTNERCLAN</span>
+		</span>
+		<span class="telemetry-online">
+			STATUS: <strong class:list={{ 'metric-offline': !server.isOnline }}>{server.isOnline ? 'OPERATIONAL // 60 HZ' : 'OFFLINE'}</strong>
+		</span>
+	</div>
+	<div class="wrap header-inner">
+		<span class="eyebrow">[WLS PARTNER CLAN] // EXKLUSIVER HEIMATSERVER</span>
+		<h1>WLS SERVER MONITOR<br />& <em>EINSATZ-KALENDER.</em></h1>
+		<p>
+			Respawn [WIPE] ist stolzer offizieller Partnerclan von
+			<span class="WLS-highlight">We Love Squad (WLS)</span>. Unsere
+			Gefechte, Community-Abende und Trainings finden exklusiv auf den
+			dedizierten WLS-Serverclustern statt.
+		</p>
+	</div>
+	<div class="wrap">
+		<div class="metrics-strip">
+			<div class="metric">
+				<span class="metric-label">SPIELER ONLINE</span>
+				<strong>{server.players}<small>/{server.maxPlayers}</small></strong>
+			</div>
+			<div class="metric-divider"></div>
+			<div class="metric">
+				<span class="metric-label">AKTUELLE MAP</span>
+				<strong class="metric-map">{server.map}</strong>
+			</div>
+			<div class="metric-divider"></div>
+			<div class="metric">
+				<span class="metric-label">MATCH SYNC</span>
+				<strong class:list={['metric-tertiary', { 'metric-offline': !server.isOnline }]}>◈ {server.isOnline ? 'SYNCED' : 'OFFLINE'}</strong>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.server-header {
+		background:
+			radial-gradient(
+				circle at 80% 0%,
+				rgba(229, 169, 88, 0.12),
+				transparent 45%
+			),
+			var(--surface);
+	}
+	.telemetry-strip {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		padding: 10px 0;
+		border-bottom: 1px solid var(--outline-variant);
+		font: 10px var(--font-mono);
+		color: var(--outline);
+		flex-wrap: wrap;
+	}
+	.telemetry-status {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		color: var(--primary);
+	}
+	.pulse-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--primary);
+		box-shadow: 0 0 8px var(--primary);
+	}
+	.partner-badge {
+		background: rgba(255, 198, 123, 0.15);
+		color: var(--primary);
+		padding: 3px 8px;
+		letter-spacing: 0.06em;
+	}
+	.telemetry-online strong {
+		color: var(--tertiary);
+	}
+	.header-inner {
+		max-width: 720px;
+		padding: 40px 0 0;
+		display: block;
+	}
+	.header-inner h1 {
+		font: 800 clamp(80px, 5.5vw, 62px) / 1.05 var(--font-display);
+		letter-spacing: 0.02em;
+		margin: 10px 0 18px;
+	}
+	.header-inner h1 em {
+		color: var(--primary);
+		font-style: normal;
+	}
+	.header-inner p {
+		color: var(--outline);
+		font-size: 16px;
+		line-height: 1.7;
+		max-width: 620px;
+		margin: 0;
+	}
+	.WLS-highlight {
+		color: var(--primary);
+		font-weight: 700;
+	}
+	.metrics-strip {
+		background: var(--surface-container-low);
+		border: 1px solid var(--outline-variant);
+		display: flex;
+		align-items: center;
+		padding: 18px 24px;
+		gap: 24px;
+		margin: 32px 0 40px;
+	}
+	.metric {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+	.metric-divider {
+		width: 1px;
+		height: 32px;
+		background: var(--outline-variant);
+	}
+	.metric-label {
+		font: 700 10px var(--font-mono);
+		letter-spacing: 0.06em;
+		color: var(--outline);
+	}
+	.metric strong {
+		font: 700 26px var(--font-display);
+		color: var(--primary);
+	}
+	.metric strong small {
+		font-size: 14px;
+		color: var(--outline);
+	}
+	.metric-map {
+		font-size: 18px;
+	}
+	.metric-tertiary {
+		color: var(--tertiary) !important;
+	}
+	.metric-offline {
+		color: var(--outline) !important;
+	}
+
+	@media (max-width: 640px) {
+		.header-inner {
+			padding-top: 32px;
+		}
+		.metrics-strip {
+			flex-wrap: wrap;
+		}
+	}
+</style>

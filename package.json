@@ -12,9 +12,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.3.1"
+    "astro": "^7.3.1",
+    "gamedig": "^5.3.3"
   },
   "allowScripts": {
     "esbuild": true
+  },
+  "devDependencies": {
+    "@iconify-json/bi": "^1.2.7",
+    "@iconify-json/mdi": "^1.2.3",
+    "@types/gamedig": "^5.0.3",
+    "astro-icon": "^1.2.0",
+    "astro-iconset": "^0.0.6"
   }
 }

@@ -1,0 +1,106 @@
+---
+---
+
+<section class="guides-header">
+	<div class="wrap">
+		<div class="diagnostic-strip">
+			<div class="diagnostic-left">
+				<span class="diagnostic-status"><i class="pulse-dot"></i> [SYS-INTEL // V8.4.12]</span>
+				<span class="diagnostic-item">DATABASE: 6 OPERATIONAL BRIEFS</span>
+				<span class="diagnostic-divider">|</span>
+				<span class="diagnostic-item">BATTALION: RESPAWN [WIPE]</span>
+			</div>
+			<span class="diagnostic-classified">TACTICAL CLASSIFICATION: DECLASSIFIED</span>
+		</div>
+		<div class="header-copy">
+			<span class="eyebrow">// TAKTISCHE EINSATZDOKTRIN</span>
+			<h1>FIELD MANUAL & <em>TAKTIK-GUIDES.</em></h1>
+			<p>
+				Vom Gefechts-Ersthelfer bis zum Panzerkommandanten: Etablierte
+				Standard Operating Procedures (SOP), Ballistikmatrizen und
+				Kompanie-Taktiken für das moderne Schlachtfeld.
+			</p>
+		</div>
+	</div>
+</section>
+
+<style>
+	.guides-header {
+		background:
+			radial-gradient(
+				circle at 80% 0%,
+				rgba(229, 169, 88, 0.12),
+				transparent 45%
+			),
+			var(--surface);
+		padding: 40px 0 32px;
+	}
+	.diagnostic-strip {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 12px;
+		background: var(--surface-container-low);
+		border: 1px solid var(--outline-variant);
+		padding: 12px 20px;
+		margin-bottom: 32px;
+		font: 10px var(--font-mono);
+		color: var(--outline);
+	}
+	.diagnostic-left {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		flex-wrap: wrap;
+	}
+	.diagnostic-status {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		color: var(--primary);
+		letter-spacing: 0.06em;
+	}
+	.pulse-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--primary);
+		box-shadow: 0 0 8px var(--primary);
+	}
+	.diagnostic-divider {
+		color: var(--outline-variant);
+	}
+	.diagnostic-classified {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		color: var(--primary);
+		letter-spacing: 0.06em;
+	}
+	.header-copy {
+		max-width: 720px;
+	}
+	.header-copy h1 {
+		font: 800 clamp(80px, 5.5vw, 62px) / 1.05 var(--font-display);
+		letter-spacing: 0.02em;
+		margin: 10px 0 18px;
+	}
+	.header-copy h1 em {
+		color: var(--primary);
+		font-style: normal;
+	}
+	.header-copy p {
+		color: var(--outline);
+		font-size: 16px;
+		line-height: 1.7;
+		max-width: 620px;
+		margin: 0;
+	}
+
+	@media (max-width: 640px) {
+		.guides-header {
+			padding: 28px 0 24px;
+		}
+	}
+</style>

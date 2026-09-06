@@ -1,0 +1,201 @@
+---
+interface Props {
+	active: "home" | "guides" | "recruitment" | "server";
+}
+const { active } = Astro.props as Props;
+
+const navItems = [
+	{ id: "home", label: "HOME", href: "/" },
+	{ id: "guides", label: "GUIDES", href: "/guides/" },
+	{
+		id: "recruitment",
+		label: "ROSTER & REKRUTIERUNG",
+		href: "/recruitment/",
+	},
+	{ id: "server", label: "SERVERS & EVENTS", href: "/server/" },
+] as const;
+---
+
+<header class="site-header">
+	<div class="utility-bar">
+		<div class="wrap utility-inner">
+			<span class="utility-status"
+				><i></i> [WIPE] SQUAD CLAN // WE ❤️ SQUAD PARTNER CLAN</span
+			>
+			<div class="utility-links">
+				<a
+					href="https://discord.gg/H86PmQbc8z"
+					target="_blank"
+					rel="noreferrer">OFFIZIELLER DISCORD</a
+				>
+				<a
+					href="https://steamcommunity.com"
+					target="_blank"
+					rel="noreferrer">STEAM GRUPPE</a
+				>
+			</div>
+		</div>
+	</div>
+	<div class="wrap nav-inner">
+		<a class="brand" href="/" aria-label="Respawn WIPE home">
+			<span class="brand-mark">W</span>
+			<span><strong>RESPAWN</strong><small>[WIPE] SQUAD</small></span>
+		</a>
+		<nav aria-label="Primary navigation">
+			{
+				navItems.map((item) => (
+					<a
+						class:list={[
+							"nav-item",
+							{ active: active === item.id },
+						]}
+						href={item.href}
+					>
+						{item.label}
+					</a>
+				))
+			}
+		</nav>
+	</div>
+</header>
+
+<style>
+	.utility-bar {
+		border-bottom: 1px solid var(--outline-variant);
+		background: var(--surface-container-lowest);
+	}
+	.utility-inner {
+		height: 32px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font: 500 9px var(--font-mono);
+		letter-spacing: 0.08em;
+		color: var(--outline);
+	}
+	.utility-status {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+	.utility-status i {
+		width: 5px;
+		height: 5px;
+		border-radius: 50%;
+		background: var(--primary-container);
+		box-shadow: 0 0 8px var(--primary-container);
+	}
+	.utility-links {
+		display: flex;
+		gap: 20px;
+	}
+	.utility-links a:hover {
+		color: var(--primary);
+	}
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 20;
+		background: var(--surface);
+	}
+	.nav-inner {
+		height: 68px;
+		display: flex;
+		align-items: center;
+		gap: 40px;
+		border-bottom: 1px solid var(--outline-variant);
+	}
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 11px;
+	}
+	.brand-mark {
+		display: grid;
+		place-items: center;
+		width: 30px;
+		height: 30px;
+		border: 1px solid var(--primary-container);
+		color: var(--primary);
+		font: 800 20px var(--font-display);
+		transform: skew(-8deg);
+		flex: none;
+	}
+	.brand strong,
+	.brand small {
+		display: block;
+	}
+	.brand strong {
+		font: 700 16px var(--font-display);
+		letter-spacing: 0.06em;
+	}
+	.brand small {
+		color: var(--primary-container);
+		font: 9px var(--font-mono);
+		letter-spacing: 0.08em;
+		margin-top: 1px;
+	}
+	nav {
+		display: flex;
+		gap: 8px;
+		flex: 1;
+	}
+	.nav-item {
+		padding: 10px 14px;
+		font: 600 11px var(--font-mono);
+		letter-spacing: 0.05em;
+		color: var(--outline);
+	}
+	.nav-item:hover {
+		color: var(--primary);
+	}
+	.nav-item.active {
+		color: var(--primary);
+		background: var(--surface-container-low);
+	}
+	.discord-button {
+		background: var(--primary-container);
+		color: var(--surface-container-lowest);
+		font: 700 10px var(--font-mono);
+		letter-spacing: 0.06em;
+		padding: 11px 16px;
+		flex: none;
+	}
+	.discord-button:hover {
+		background: var(--primary);
+	}
+
+	@media (max-width: 900px) {
+		.utility-links {
+			display: none;
+		}
+		nav {
+			gap: 2px;
+		}
+		.nav-item {
+			padding: 10px 8px;
+			font-size: 9px;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.utility-status span {
+			display: none;
+		}
+		.nav-inner {
+			height: auto;
+			flex-wrap: wrap;
+			padding: 12px 18px;
+			gap: 12px;
+		}
+		nav {
+			order: 3;
+			width: 100%;
+			overflow-x: auto;
+			gap: 0;
+		}
+		.discord-button {
+			margin-left: auto;
+		}
+	}
+</style>

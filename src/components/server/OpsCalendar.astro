@@ -1,0 +1,153 @@
+---
+import { Icon } from "astro-icon/components";
+
+const discordRules = [
+	'RESPEKT & TEAMGEIST',
+	'KANAL-SYSTEM',
+	'KEINE FREMDWERBUNG',
+	'SPRACHREGELUNG',
+	'PROFILE & AVATARE',
+	'THEMENBESCHRÄNKUNG',
+	'MENTION-SPAM & PINGS',
+	'DATENSCHUTZ & RECORDING',
+	'REGELVERSTÖSSE & KONSEQUENZEN',
+	'ADMIN-VORBEHALT & ENTSCHEIDUNGEN',
+];
+---
+
+<section class="ops-calendar">
+	<div class="wrap">
+		<div class="section-head">
+			<span class="eyebrow">02 // EINSATZPLANUNG</span>
+			<h2>OPERATIONS-KALENDER // <em>EINSATZPLAN</em></h2>
+			<p>Alle anstehenden Community-Abende, Scrims und Trainings von Respawn [WIPE] auf einen Blick.</p>
+		</div>
+		<div class="section-grid">
+			<div class="wip-panel">
+				<Icon name="bi:cone-striped" size={28} />
+				<span class="eyebrow">IN ENTWICKLUNG</span>
+				<h3>Kalender folgt in Kürze</h3>
+				<p>
+					Der Operations-Kalender mit Community-Abenden, Scrims und
+					Trainings wird gerade aufgebaut. Aktuelle Termine findest du
+					bis dahin auf unserem Discord-Server.
+				</p>
+			</div>
+			<aside class="discord-rules">
+				<div class="panel-title">
+					<Icon name="bi:discord" size={16} />
+					DISCORD-REGELN // [WIPE] Respawn
+				</div>
+				<ol>
+					{
+						discordRules.map((rule, index) => (
+							<li>
+								<span>{String(index + 1).padStart(2, '0')}</span>
+								{rule}
+							</li>
+						))
+					}
+				</ol>
+			</aside>
+		</div>
+	</div>
+</section>
+
+<style>
+	.ops-calendar {
+		padding: 64px 0;
+		border-top: 1px solid var(--outline-variant);
+	}
+	.section-head {
+		margin-bottom: 28px;
+	}
+	.section-head h2 {
+		font: 700 clamp(28px, 3.2vw, 34px) / 1.15 var(--font-display);
+		letter-spacing: 0.03em;
+		margin: 12px 0 12px;
+	}
+	.section-head h2 em {
+		color: var(--primary);
+		font-style: normal;
+	}
+	.section-head p {
+		color: var(--outline);
+		font-size: 16px;
+		line-height: 1.7;
+		max-width: 620px;
+		margin: 0;
+	}
+	.section-grid {
+		display: grid;
+		grid-template-columns: 1.6fr 1fr;
+		gap: 20px;
+	}
+	.wip-panel {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+		background: var(--surface-container-low);
+		border: 1px dashed var(--outline-variant);
+		color: var(--primary);
+		padding: 48px 32px;
+	}
+	.wip-panel h3 {
+		font: 700 22px var(--font-display);
+		letter-spacing: 0.02em;
+		color: var(--on-surface);
+		margin: 4px 0 0;
+	}
+	.wip-panel p {
+		font-size: 14px;
+		line-height: 1.6;
+		color: var(--outline);
+		max-width: 480px;
+		margin: 0;
+	}
+	.discord-rules {
+		background: var(--surface-container-low);
+		border: 1px solid var(--outline-variant);
+		align-self: start;
+	}
+	.panel-title {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 18px 22px;
+		border-bottom: 1px solid var(--outline-variant);
+		font: 600 11px var(--font-mono);
+		letter-spacing: 0.08em;
+		color: var(--primary);
+	}
+	.discord-rules ol {
+		list-style: none;
+		margin: 0;
+		padding: 14px 22px;
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+	.discord-rules li {
+		display: flex;
+		gap: 10px;
+		font: 11px var(--font-mono);
+		color: var(--outline);
+		letter-spacing: 0.03em;
+	}
+	.discord-rules li span {
+		color: var(--primary-container);
+		flex: none;
+	}
+
+	@media (max-width: 900px) {
+		.section-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+	@media (max-width: 640px) {
+		.ops-calendar {
+			padding: 44px 0;
+		}
+	}
+</style>

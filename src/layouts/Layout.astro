@@ -1,23 +1,44 @@
+---
+import "../styles/theme.css";
+
+const { title = "Respawn [WIPE] Squad Hub" } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="de">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<!-- Open Graph tags -->
+		<meta property="og:title" content="{title}" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://Respawn-WIPE.com" />
+		<meta
+			property="og:description"
+			content="Welcome to {title}!"
+		/>
+		<!-- <meta
+			property="og:image"
+			content="https://www.example.com/_astro/seo-banner.BZD7kegZ.webp"
+		/> -->
+		<meta property="og:image:alt" content="WIPE" />
+
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/Favicon.Respawn_WIPE.png"
+		/>
+		<link rel="icon" href="/Favicon.Respawn_WIPE_ico.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<title>{title}</title>
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
